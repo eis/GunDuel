@@ -48,45 +48,58 @@ public class Main {
 		
 		Map<Player, MyOutcome> outcomes = new HashMap<Player, MyOutcome>(players.size());
 		List<MyOutcome> outcomesList = new ArrayList<MyOutcome>(players.size());
-		for (Player p : players) {
-			MyOutcome o = new MyOutcome(p);
-			outcomes.put(p, o);
-			outcomesList.add(o);
-		}
-		for (int i = 0; i < 100; i++) {
-			for (int a = 0; a < players.size(); a++) {
-			    for (int b = 0; b < players.size(); b++) {
-			    	if (a == b) {
-			    		continue;
-			    	}
-					// Prepares a duel.
-			    	Player p1 = players.get(a);
-			    	Player p2 = players.get(b);
-					GunDuel duel = new GunDuel(p1, p2, duelLength);
-					// Start a duel.
-					Outcome o = duel.fight();
-					// Report & record
-					System.out.print(p1 + " vs " + p2 + ": ");
-					if (o == Outcome.AWIN) {
-						System.out.println(p1 + " won");
-						outcomes.get(p1).wins++;
-						outcomes.get(p2).losses++;
-					} else if (o == Outcome.DRAW) {
-						System.out.println("draw");
-						outcomes.get(p1).draws++;
-						outcomes.get(p2).draws++;
-					} else if (o == Outcome.BWIN) {
-						System.out.println(p2 + " won");
-						outcomes.get(p1).losses++;
-						outcomes.get(p2).wins++;
-					}
-			    }
+		for (int round = 1; !players.isEmpty(); round++) {
+			
+			outcomes.clear();
+			outcomesList.clear();
+			
+			for (Player p : players) {
+				MyOutcome o = new MyOutcome(p);
+				outcomes.put(p, o);
+				outcomesList.add(o);
 			}
-		}
-		System.out.println("");
-		Collections.sort(outcomesList);
-		for (MyOutcome o : outcomesList) {
-			System.out.println("For " + o.p + " outcome is " + o);
+			for (int i = 0; i < 100; i++) {
+				for (int a = 0; a < players.size(); a++) {
+				    for (int b = 0; b < players.size(); b++) {
+				    	if (a == b) {
+				    		continue;
+				    	}
+						// Prepares a duel.
+				    	Player p1 = players.get(a);
+				    	Player p2 = players.get(b);
+						GunDuel duel = new GunDuel(p1, p2, duelLength);
+						// Start a duel.
+						Outcome o = duel.fight();
+						// Report & record
+						//System.out.print(p1 + " vs " + p2 + ": ");
+						if (o == Outcome.AWIN) {
+							//System.out.println(p1 + " won");
+							outcomes.get(p1).wins++;
+							outcomes.get(p2).losses++;
+						} else if (o == Outcome.DRAW) {
+							//System.out.println("draw");
+							outcomes.get(p1).draws++;
+							outcomes.get(p2).draws++;
+						} else if (o == Outcome.BWIN) {
+							//System.out.println(p2 + " won");
+							outcomes.get(p1).losses++;
+							outcomes.get(p2).wins++;
+						}
+				    }
+				}
+			}
+			Collections.sort(outcomesList);
+			MyOutcome lastOutcome = outcomesList.get(outcomesList.size() -1);
+			System.out.printf("Four round %d, player %s leaves the table with score %s%n",
+					round, lastOutcome.p.getClass().getName(),
+					lastOutcome);
+			players.remove(lastOutcome.p);
+			if (players.size() < 2) {
+				System.out.printf("Winner is %s with final score %s%n",
+						players.get(0).getClass().getName(),
+						outcomesList.get(0));
+				break;
+			}
 		}
 		
 	}
