@@ -7,9 +7,9 @@ public class Main {
 		// Total number of turns per duel.
 		int duelLength = 100;
 		// Player identifier 1: HumanPlayer.
-		HumanPlayer human = new HumanPlayer(2);
+		Player human = new OpportunistPlayer(2);
 		// Player identifier 2: GunClubPlayer.
-		GunClubPlayer gunClub = new GunClubPlayer(1);
+		Player gunClub = new GunClubPlayer(1);
 		
 		// Prepares a duel.
 		GunDuel duel = new GunDuel(human,gunClub, duelLength);
