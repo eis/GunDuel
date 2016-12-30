@@ -41,6 +41,7 @@ public abstract class Player {
     
     // [Optionally Customize] Notified of opponent action in after turn.
     public void perceive(Action action){
+    	mHistoryOpponent.add(action);
     	switch(action){
 	    	case LOAD:
 	    		mAmmoOpponent += 1;
