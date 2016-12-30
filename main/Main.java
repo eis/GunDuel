@@ -48,6 +48,10 @@ public class Main {
 		
 		Map<Player, MyOutcome> outcomes = new HashMap<Player, MyOutcome>(players.size());
 		List<MyOutcome> outcomesList = new ArrayList<MyOutcome>(players.size());
+		Map<Player,MyOutcome> totalOutcomesMap = new HashMap<Player,MyOutcome>(players.size());
+		for (Player p : players) {
+			totalOutcomesMap.put(p, new MyOutcome(p));
+		}
 		for (int round = 1; !players.isEmpty(); round++) {
 			
 			outcomes.clear();
@@ -88,6 +92,11 @@ public class Main {
 				    }
 				}
 			}
+			for (MyOutcome outcome: outcomesList) {
+				totalOutcomesMap.get(outcome.p).wins += outcome.wins;
+				totalOutcomesMap.get(outcome.p).draws += outcome.draws;
+				totalOutcomesMap.get(outcome.p).losses += outcome.losses;
+			}
 			Collections.sort(outcomesList);
 			MyOutcome lastOutcome = outcomesList.get(outcomesList.size() -1);
 			System.out.printf("Four round %d, player %s leaves the table with score %s%n",
@@ -98,6 +107,12 @@ public class Main {
 				System.out.printf("Winner is %s with final score %s%n",
 						players.get(0).getClass().getName(),
 						outcomesList.get(0));
+				System.out.println("Full results:");
+				List<MyOutcome> totalOutcomesList = new ArrayList<>(totalOutcomesMap.size());
+				totalOutcomesList.addAll(totalOutcomesMap.values());
+				Collections.sort(totalOutcomesList);
+				for(MyOutcome mo : totalOutcomesList)
+					System.out.printf("%s: %s%n", mo.p.getClass().getName(), mo);
 				break;
 			}
 		}
