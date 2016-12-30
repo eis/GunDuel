@@ -4,7 +4,7 @@ public class CustomPlayer extends Player {
 
 	// [Optionally Customize] Obtain identifier of opponent.
 	public CustomPlayer(int opponent) {
-		super(opponent);
+		//super(opponent);
 		/* your code goes here */
 	}
 

@@ -4,8 +4,6 @@ import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Player {
-	private final String[] ACTION = { "0", "1", "2", "-", "=" };
-	private final String[] RESULT = { "drew", "won", "lost" };
 	
 	// Load ammo, shoot bullet / plasma, metal shield / thermal deflector
 	public static enum Action {
@@ -61,21 +59,7 @@ public abstract class Player {
 
 	// [Optionally Customize] Notified of win / loss / draw status.
 	public void declared(Result result) {
-		System.out.println(
-				" :: " + this.getClass().getSimpleName() 
-				+ " "+ RESULT[result.getValue()] + " after " + getTurn() + " turns!" + "\n " + " :: Replay");
 
-		System.out.print("    YOU ");
-		for (Action action : getHistory()) {
-			System.out.print(ACTION[action.getValue()]);
-		}
-		System.out.println("");
-
-		System.out.print("    FOE ");
-		for (Action action : getHistoryOpponent()) {
-			System.out.print(ACTION[action.getValue()]);
-		}
-		System.out.println("");
 	};
 
 	public static int getRandomInteger(int max) {

@@ -4,17 +4,6 @@ import java.io.IOException;
 
 public class HumanPlayer extends Player {
 
-	// [Optionally Customize] Obtain identifier of opponent.
-	public HumanPlayer(int opponent) {
-		super(opponent);
-		/* your code goes here */
-	}
-
-	// [Optionally Customize] Obtain identifier of opponent.
-	public HumanPlayer() {
-
-	}
-
 	private String[] ACTION = { "0", "1", "2", "-", "=" };
 	private String[] RESULT = { "drew", "won", "lost" };
 

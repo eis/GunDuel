@@ -2,9 +2,6 @@ package players;
 
 public class OpportunistPlayer extends Player {
 
-	public OpportunistPlayer(int opponent) {
-		super(opponent);
-	}
 	@Override
 	public Action fight() {
 		switch (getTurn() % 3) {
