@@ -1,6 +1,7 @@
 package players;
 
 import java.util.Vector;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Player {
 	private final String[] ACTION = { "0", "1", "2", "-", "=" };
@@ -76,6 +77,10 @@ public abstract class Player {
 		}
 		System.out.println("");
 	};
+
+	public static int getRandomInteger(int max) {
+		return ThreadLocalRandom.current().nextInt(0, max + 1);
+	}
 
 	// Constructor which accepts identifier of opponent.
 	public Player(int opponent) {
