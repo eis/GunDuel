@@ -2,6 +2,7 @@ package players;
 
 
 import java.util.Vector;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Player {
 	// Load ammo, shoot bullet / plasma, metal shield / thermal deflector
@@ -107,6 +108,10 @@ public abstract class Player {
 
     // Unique identifier per opponent player class.
     private int mOpponent;
+
+    public static int getRandomInteger(int max) {
+        return ThreadLocalRandom.current().nextInt(0, max + 1);
+    }
 
     // Records history of player.
     private Vector<Action> mHistory = new Vector<Action>();
