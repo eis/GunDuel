@@ -7,7 +7,7 @@ public class SadisticShooterPlayer extends Player {
         if (history.size() - 1 < elements) return false;
     	int firstToInclude = history.size() - elements - 1;
 
-        for (int i = firstToInclude; i < history.size(); i++)
+        for (int i = firstToInclude + 1; i < history.size(); i++)
             if (history.get(i) != history.get(firstToInclude)) return false;
         return true;
     }
