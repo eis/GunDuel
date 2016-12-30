@@ -105,15 +105,17 @@ public class HumanPlayer extends Player {
 		System.out.println(
 				" :: You " + RESULT[result.getValue()] + " after " + getTurn() + " turns!" + "\n " + " :: Replay");
 
-		System.out.println("    YOU ");
+		System.out.print("    YOU ");
 		for (Action action : getHistory()) {
-			System.out.println(ACTION[action.getValue()]);
+			System.out.print(ACTION[action.getValue()]);
 		}
+		System.out.println("");
 
-		System.out.println("    FOE ");
+		System.out.print("    FOE ");
 		for (Action action : getHistoryOpponent()) {
-			System.out.println(ACTION[action.getValue()]);
+			System.out.print(ACTION[action.getValue()]);
 		}
+		System.out.println("");
 	}
 
 	/* Private stuff goes here */
